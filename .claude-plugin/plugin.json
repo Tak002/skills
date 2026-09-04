@@ -1,0 +1,12 @@
+{
+  "name": "tak002-skills",
+  "description": "Tak002 의 개인 Agent Skills 모음",
+  "version": "0.1.0",
+  "author": {
+    "name": "Tak002",
+    "url": "https://github.com/Tak002"
+  },
+  "repository": "https://github.com/Tak002/skills",
+  "license": "MIT",
+  "keywords": ["skills", "claude-code", "agent-skills"]
+}
