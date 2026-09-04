@@ -1,0 +1,12 @@
+{
+  "name": "notion-export-scripts",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Notion 페이지(공개/비공개)를 하위 페이지·DB 행까지 재귀적으로 Markdown 트리로 저장한다.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "notion-client": "8.0.8",
+    "notion-x-to-md": "8.0.8"
+  }
+}

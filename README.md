@@ -45,6 +45,7 @@ npx skills@latest add Tak002/skills --skill example-skill
 | --- | --- |
 | [example-skill](skills/example-skill/SKILL.md) | 스킬 작성 틀을 보여 주는 예시. 실제 기능은 없다. |
 | [report-viewer](skills/report-viewer/SKILL.md) | 프로젝트에 `report/` 폴더와 md·html·json·txt·코드 뷰어(서버/정적 겸용)를 설치하고, Claude 가 보고서를 그 폴더 규칙대로 쓰게 한다. Python 3.10+, 외부 패키지 없음. |
+| [notion-export](skills/notion-export/SKILL.md) | Notion 페이지를 하위 페이지·인라인 DB 행(속성 표 포함)·이미지·첨부까지 재귀적으로 Markdown 파일 트리로 저장한다. 공개 페이지는 토큰 없이, 비공개 페이지는 브라우저(Chrome/Edge)에서 DevTools Protocol 로 꺼낸 `token_v2` 로. `--exclude`/`--max-pages`/`--resume` 지원. Node 22+, `npm install` 필요. |
 
 ## 새 스킬 추가
 
