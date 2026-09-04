@@ -44,6 +44,7 @@ npx skills@latest add Tak002/skills --skill example-skill
 | 이름 | 설명 |
 | --- | --- |
 | [example-skill](skills/example-skill/SKILL.md) | 스킬 작성 틀을 보여 주는 예시. 실제 기능은 없다. |
+| [report-viewer](skills/report-viewer/SKILL.md) | 프로젝트에 `report/` 폴더와 md·html·json·txt·코드 뷰어(서버/정적 겸용)를 설치하고, Claude 가 보고서를 그 폴더 규칙대로 쓰게 한다. Python 3.10+, 외부 패키지 없음. |
 
 ## 새 스킬 추가
 

@@ -1,0 +1,27 @@
+{
+  "_comment": "스캔 규칙의 단일 원본. build.py, serve.py, scan.js 가 모두 이 파일을 읽는다 (브라우저용 filetypes.js 는 build.py 가 여기서 생성).",
+  "version": 1,
+  "hiddenPrefixes": [".", "_"],
+  "skipDirs": ["node_modules", "__pycache__", "$RECYCLE.BIN", "System Volume Information", ".git", ".venv", "venv"],
+  "skipRootFiles": ["index.html", "start.cmd", "start.sh"],
+  "bodyMaxBytes": 2097152,
+  "headBytes": 65536,
+  "types": {
+    "md": [".md", ".markdown"],
+    "html": [".html", ".htm"],
+    "json": [".json", ".jsonc"],
+    "text": [".txt", ".log"],
+    "file": [".pdf", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".ico", ".bmp",
+             ".docx", ".xlsx", ".pptx", ".doc", ".xls", ".ppt", ".csv", ".zip", ".7z", ".gz",
+             ".mp4", ".mp3", ".wav", ".hwp", ".hwpx"]
+  },
+  "code": {
+    ".py": "python", ".js": "javascript", ".mjs": "javascript", ".cjs": "javascript", ".ts": "typescript",
+    ".jsx": "javascript", ".tsx": "typescript", ".c": "c", ".h": "c", ".cpp": "cpp", ".hpp": "cpp", ".cc": "cpp",
+    ".java": "java", ".cs": "csharp", ".go": "go", ".rs": "rust", ".rb": "ruby", ".php": "php", ".kt": "kotlin",
+    ".swift": "swift", ".sql": "sql", ".sh": "bash", ".bash": "bash", ".ps1": "powershell", ".bat": "dos", ".cmd": "dos",
+    ".yaml": "yaml", ".yml": "yaml", ".toml": "ini", ".ini": "ini", ".cfg": "ini", ".xml": "xml", ".css": "css",
+    ".scss": "scss", ".vue": "xml", ".r": "r", ".m": "objectivec", ".lua": "lua", ".pl": "perl",
+    ".gradle": "groovy", ".groovy": "groovy", ".scala": "scala", ".dart": "dart"
+  }
+}
