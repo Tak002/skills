@@ -1,0 +1,42 @@
+{
+  "skill_name": "notion-export",
+  "suffix": "실제로 명령을 실행하거나 파일을 만들지 말고, 무엇을 어떤 순서로 할지 사용자에게 답하듯 한국어로 설명해라.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "public-page-to-markdown",
+      "prompt": "https://rare-antelope-f3b.notion.site/974e07b1ea894edfa2accf234d604e63 이 노션 페이지를 하위 페이지까지 전부 markdown 으로 저장해줘.",
+      "audience": "공개 페이지, 토큰 불필요",
+      "assertions": [
+        "export.mjs 스크립트를 node 로 실행한다고 말한다",
+        "저장하기 전에 --list 로 페이지 수와 구조를 먼저 확인한다고 말한다",
+        "공개 페이지이므로 토큰이나 로그인이 필요 없다고 말한다",
+        "이미지가 assets/ 폴더에 내려받아지고 내부 링크가 상대 경로로 바뀐다는 점을 언급한다"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "private-page-needs-login",
+      "prompt": "회사 노션의 비공개 페이지 https://www.notion.so/myteam/2ab31fa1c8b882d69f8a81c3c0814b2a 를 markdown 으로 백업하고 싶어. 로그인해야 보이는 페이지야.",
+      "audience": "비공개 페이지, 브라우저 인증 필요",
+      "assertions": [
+        "get-token.mjs 로 브라우저에서 token_v2 쿠키를 얻는 절차를 말한다 (창이 뜨고 로그인하면 .env 에 저장)",
+        "쿠키 DB 파일을 직접 읽는 방식(browser_cookie3 등)은 Chrome/Edge 에서 동작하지 않는다는 이유를 말하거나, 최소한 DevTools Protocol 방식을 쓴다고 말한다",
+        "token_v2 값을 응답이나 커밋에 노출하지 말라고 경고한다",
+        "첨부 파일(동영상·PDF)까지 받으려면 file_token 이 추가로 필요하다는 점을 언급한다"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "large-page-into-report",
+      "prompt": "노션 매뉴얼 페이지(DB 행이 수백 개야)를 우리 report 폴더에 보고서로 넣어줘. 백업용 사본 DB 는 빼고.",
+      "audience": "큰 페이지, report 규칙 적용",
+      "assertions": [
+        "report/work/<프로젝트 또는 주제>/<주제>/ 아래에 두고 파일명에 날짜 접두어(--prefix YYYY-MM-DD-)를 붙인다고 말한다",
+        "--exclude 로 백업 사본 DB 를 건너뛴다고 말한다",
+        "--max-pages 로 끊어 받고 --resume 으로 이어 받을 수 있다고 말한다",
+        "저장 후 report 색인을 갱신(build.py)해야 한다고 말한다"
+      ]
+    }
+  ]
+}

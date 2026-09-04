@@ -7,8 +7,9 @@ Tak002 의 개인 Agent Skills 저장소. Claude Code(및 SKILL.md 규격을 읽
 ```
 skills/                 배포되는 스킬. 폴더 하나 = 스킬 하나, 안에 SKILL.md 필수
   example-skill/        틀을 보여 주는 예시 스킬 (실제 기능 없음)
-templates/              새 스킬을 만들 때 복사하는 SKILL.md 템플릿
-scripts/validate.py     SKILL.md 형식 검사 (CI 에서도 실행)
+templates/              새 스킬을 만들 때 복사하는 SKILL.md, evals.json 템플릿
+workspace/              스킬 평가 작업장 (배포 안 됨). run_evals.py + <skill>/evals.json, eval-results.md
+scripts/validate.py     SKILL.md 형식 + workspace/<skill>/evals.json 검사 (CI 에서도 실행)
 .claude-plugin/         Claude Code 플러그인/마켓플레이스 메타데이터
 .github/workflows/      PR·push 때 validate.py 실행
 AGENTS.md / CLAUDE.md   이 저장소에서 에이전트가 지킬 규칙
@@ -52,8 +53,10 @@ npx skills@latest add Tak002/skills --skill example-skill
 1. `templates/SKILL.md` 를 `skills/<kebab-case-이름>/SKILL.md` 로 복사한다.
 2. front matter 의 `name` 을 폴더 이름과 같게 맞추고, `description` 에 "무엇을 하는지 + 언제 쓰는지" 를 한 문단으로 적는다. 에이전트는 이 description 만 보고 스킬을 고른다.
 3. 본문에는 실행 절차를 적는다. 긴 참고 자료는 같은 폴더의 `reference.md`, `examples/` 로 뺀다.
-4. `python scripts/validate.py` 를 돌려 통과하는지 확인한다.
-5. 이 README 의 스킬 목록 표에 한 줄 추가한다.
+4. `templates/evals.json` 을 `workspace/<이름>/evals.json` 으로 복사해 요청 3개와 합격 기준을 적는다.
+5. `python scripts/validate.py` 를 돌려 통과하는지 확인한다.
+6. `python workspace/run_evals.py --skill <이름>` 으로 스킬 있음/없음을 비교하고 결과를 `workspace/<이름>/eval-results.md` 에 적는다. 자세한 흐름은 [workspace/README.md](workspace/README.md).
+7. 이 README 의 스킬 목록 표에 한 줄 추가한다.
 
 자세한 작성 규칙은 [AGENTS.md](AGENTS.md) 에 있다.
 

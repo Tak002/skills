@@ -58,6 +58,7 @@ Notion 페이지 URL 을 받아 그 페이지와 그 안의 모든 하위 페이
    ```
 
    - 전용 프로필(`~/.cache/notion-export/profile-<browser>`)을 원격 디버깅 포트로 띄우고 DevTools Protocol 로 httpOnly 쿠키 `token_v2`, `notion_user_id` 를 읽는다. 로그인은 프로필에 남아 다음부터는 창이 잠깐 떴다 닫힌다.
+   - 사용자에게 안내할 때는 왜 창이 뜨는지 한 줄로 설명한다: "브라우저 쿠키 파일을 직접 읽는 방식은 Chrome/Edge 의 App-Bound Encryption 때문에 동작하지 않아서, 전용 프로필 창을 띄우고 DevTools Protocol 로 로그인 쿠키를 읽습니다."
    - 결과는 `<skill>/scripts/.env` (gitignore 대상). `export.mjs` 가 자동으로 읽는다. 환경 변수 `NOTION_TOKEN_V2`, `NOTION_USER_ID` 또는 `--token`, `--user` 로 줘도 된다.
    - **비공개 첨부(파일·동영상·PDF)까지 받으려면** `file_token` 쿠키가 더 필요하다. 로그인만으로는 안 생기고 첨부를 한 번 열어야 생긴다:
 

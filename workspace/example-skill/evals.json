@@ -1,0 +1,17 @@
+{
+  "skill_name": "example-skill",
+  "suffix": "한국어로 답해라.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "explain-template",
+      "prompt": "예시 스킬 틀 보여줘.",
+      "audience": "저장소 규칙 확인",
+      "assertions": [
+        "이 스킬이 예시(자리표시자)라서 실제 작업을 하지 않는다고 말한다",
+        "templates/SKILL.md 를 복사해 새 스킬을 시작하라고 안내한다",
+        "작성 규칙은 AGENTS.md 에 있다고 가리킨다"
+      ]
+    }
+  ]
+}

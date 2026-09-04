@@ -1,4 +1,4 @@
-"""skills/*/SKILL.md 형식 검사.
+"""skills/*/SKILL.md 형식 검사 + workspace/<skill>/evals.json 존재·형식 검사.
 
 사용법:  python scripts/validate.py
 종료 코드: 문제가 하나라도 있으면 1, 없으면 0.
@@ -7,12 +7,19 @@
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS_DIR = ROOT / "skills"
+WORKSPACE_DIR = ROOT / "workspace"
+sys.path.insert(0, str(WORKSPACE_DIR))
+try:
+    from run_evals import validate_evals  # workspace/run_evals.py
+except Exception:  # noqa: BLE001
+    validate_evals = None
 NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 MAX_NAME = 64
 MAX_DESC = 1024
@@ -77,7 +84,22 @@ def check_skill(folder: Path) -> list[str]:
     if re.search(r"[A-Za-z]:\\Users\\", text):
         errors.append(f"{folder.name}: 절대 경로(C:\\Users\\...)가 들어 있다")
 
+    errors.extend(check_evals(folder.name))
     return errors
+
+
+def check_evals(name: str) -> list[str]:
+    """workspace/<name>/evals.json 이 있고 형식이 맞는지."""
+    path = WORKSPACE_DIR / name / "evals.json"
+    if not path.is_file():
+        return [f"{name}: workspace/{name}/evals.json 이 없다 (templates/evals.json 을 복사해 만든다)"]
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        return [f"{name}: workspace/{name}/evals.json 이 JSON 이 아니다 ({e})"]
+    if validate_evals is None:
+        return [f"{name}: workspace/run_evals.py 를 불러오지 못해 evals.json 을 검사할 수 없다"]
+    return [f"{name}: evals.json — {p}" for p in validate_evals(data, name)]
 
 
 def main() -> int:

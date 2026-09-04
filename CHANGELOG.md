@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0 - 2026-09-04
+
+- `workspace/` 추가: 스킬 평가 작업장. 공용 실행기 `run_evals.py`(스킬 있음/없음 또는 두 버전 A/B 를 claude CLI 로 돌리고 claude 로 채점), `test_run_evals.py`, 스킬별 `evals.json`·`eval-results.md`(example-skill, report-viewer, notion-export). `templates/evals.json` 추가.
+- `scripts/validate.py`: 스킬마다 `workspace/<skill>/evals.json` 존재·형식 검사 추가. AGENTS.md 에 "스킬을 만들 때는 평가부터" 절 추가.
+- `notion-export` SKILL.md: 비공개 페이지 안내 때 왜 브라우저 창이 뜨는지(DevTools Protocol, App-Bound Encryption) 한 줄 설명하도록 지시 추가. 평가 문제 2 가 3/4 → 4/4.
+
 ## 0.3.0 - 2026-09-04
 
 - `notion-export` 추가: Notion 페이지를 하위 페이지·인라인 DB 행까지 재귀적으로 Markdown 트리로 저장 (`scripts/export.mjs`, notion-client + notion-x-to-md). 비공개 페이지용으로 브라우저 DevTools Protocol 에서 `token_v2` 를 읽는 `scripts/get-token.mjs` 포함. 도구·인증 방식 비교는 `reference.md`.

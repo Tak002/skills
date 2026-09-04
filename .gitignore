@@ -7,3 +7,5 @@ Thumbs.db
 *.log
 .env
 _*.md
+workspace/*/iteration-*/
+.pytest_cache/

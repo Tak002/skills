@@ -1,0 +1,40 @@
+{
+  "skill_name": "report-viewer",
+  "suffix": "실제로 명령을 실행하거나 파일을 만들지 말고, 무엇을 어떤 순서로 할지 사용자에게 답하듯 한국어로 설명해라.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "install-default",
+      "prompt": "이 프로젝트에 보고서 뷰어 설치해줘.",
+      "audience": "처음 설치",
+      "assertions": [
+        "setup.py 를 실행한다고 말한다",
+        "보고서 폴더 위치(기본 report/)와 프로젝트 루트를 확정하거나 기본값을 제시한다",
+        "설치 후 start.cmd 또는 start.sh 로 뷰어를 여는 방법을 안내한다",
+        "앞으로 보고서는 그 폴더 규칙(YYYY-MM-DD-주제.md, front matter)을 따른다고 말한다"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "move-report-folder",
+      "prompt": "보고서 폴더를 report 에서 docs/reports 로 옮기고 싶어.",
+      "audience": "위치 변경",
+      "assertions": [
+        "기존 폴더를 먼저 옮긴(또는 이름을 바꾼) 뒤 setup.py --dest docs/reports 를 실행한다고 말한다",
+        "옮기지 않고 실행하면 폴더가 하나 더 생긴다는 점을 경고한다",
+        "훅과 CLAUDE.md 구간이 새 경로로 갱신된다고 말한다"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "hook-not-running",
+      "prompt": "보고서를 새로 썼는데 뷰어에 안 보여. 색인이 안 갱신되는 것 같아.",
+      "audience": "문제 해결",
+      "assertions": [
+        "python <dest>/_viewer/build.py 로 색인을 수동 생성하라고 말한다",
+        ".claude/settings.json 의 훅 명령에 적힌 Python 경로가 유효한지 확인하라고 말한다",
+        "서버 모드(start.cmd)는 색인 없이도 동작한다는 점을 언급한다"
+      ]
+    }
+  ]
+}
