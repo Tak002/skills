@@ -47,6 +47,8 @@ npx skills@latest add Tak002/skills --skill example-skill
 | [example-skill](skills/example-skill/SKILL.md) | 스킬 작성 틀을 보여 주는 예시. 실제 기능은 없다. |
 | [report-viewer](skills/report-viewer/SKILL.md) | 프로젝트에 `report/` 폴더와 md·html·json·txt·코드 뷰어(서버/정적 겸용)를 설치하고, Claude 가 보고서를 그 폴더 규칙대로 쓰게 한다. Python 3.10+, 외부 패키지 없음. |
 | [notion-export](skills/notion-export/SKILL.md) | Notion 페이지를 하위 페이지·인라인 DB 행(속성 표 포함)·이미지·첨부까지 재귀적으로 Markdown 파일 트리로 저장한다. 공개 페이지는 토큰 없이, 비공개 페이지는 브라우저(Chrome/Edge)에서 DevTools Protocol 로 꺼낸 `token_v2` 로. `--exclude`/`--max-pages`/`--resume` 지원. Node 22+, `npm install` 필요. |
+| [make-goal](skills/make-goal/SKILL.md) | 이루고 싶은 것을 받아 Claude Code `/goal` 조건문(또는 Codex goal objective)으로 만든다. 프로젝트의 테스트·빌드 명령을 읽어 "끝난 상태 + 확인 명령 → 기대값 + 게이밍 차단 제약 + BLOCKED/STOPPED 종료 절" 을 채우고, `scripts/check_goal.py` 로 길이(기본 4,000자)·형식을 검사해 넘치면 다시 만든다. 그래도 넘치면 런처 + 명세 파일로 나눈다. Python 3.10+, 외부 패키지 없음. |
+| [make-worktree](skills/make-worktree/SKILL.md) | 메인 작업 폴더가 바쁠 때 git worktree 로 옆에 작업별 일회용 폴더 `<repo>.wt/<slug>` 를 만들고 지금 세션을 그리로 옮긴다. 끝나면 worktree 안에서 base 동기화 → 검증 → 상황에 맞는 방식(PR·직접 push·로컬 병합·자체 절차) 추천 후 확인 → 합치고 지운다. 메인 체크아웃은 건드리지 않는다. "서브트리" 라고 불러도 git subtree 가 아니라 이 스킬이다. Python 3.10+, 외부 패키지 없음. |
 
 ## 새 스킬 추가
 

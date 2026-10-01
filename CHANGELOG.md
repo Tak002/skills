@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.0 - 2026-10-01
+
+- `make-goal` 추가: 이루고 싶은 것을 Claude Code `/goal` 조건문·Codex goal objective 로 만든다. `scripts/check_goal.py` 가 제품과 같은 방식으로 길이를 세고(기본 4,000자. Claude 는 UTF-16, Codex 는 문자 수) 형식을 검사하며, 넘치거나 오류가 있으면 압축 사다리로 고쳐 최대 5회 다시 검사하고, 그래도 넘치면 런처 + 명세 파일로 나눈다. 작성 기준은 `reference.md`, 나쁜 예 → 좋은 예 6종은 `examples.md`.
+- `make-worktree` 추가: git worktree 로 메인 옆 `<repo>.wt/<slug>` 작업 폴더를 만들고(`EnterWorktree` 로 세션 이동) sync → 검증 → 신호 기반 방식 추천(pr·push·local·delegate) → finish → remove/clean 까지. `scripts/wt.py`(표준 라이브러리), 실제 git 으로 도는 테스트 26개.
+
 ## 0.4.0 - 2026-09-04
 
 - `workspace/` 추가: 스킬 평가 작업장. 공용 실행기 `run_evals.py`(스킬 있음/없음 또는 두 버전 A/B 를 claude CLI 로 돌리고 claude 로 채점), `test_run_evals.py`, 스킬별 `evals.json`·`eval-results.md`(example-skill, report-viewer, notion-export). `templates/evals.json` 추가.
